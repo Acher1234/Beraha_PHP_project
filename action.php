@@ -1,12 +1,4 @@
 <?php
-//mysqli_stmt :: bind_param - mysqli_stmt_bind_param - קושר משתנים להצהרה מוכנה כפרמטרים
-//mysqli_stmt_bind_result () - קושר משתנים להצהרה מוכנה לאחסון תוצאות
-//mysqli_stmt_execute () - מבצע שאילתה מוכנה
-//mysqli_stmt_fetch () - להביא תוצאות מהצהרה מוכנה למשתנים הכבולים
-//mysqli_prepare () - הכן הצהרת SQL לביצוע
-//mysqli_stmt_send_long_data () - שלח נתונים בחסימות
-//mysqli_stmt_errno () - מחזיר את קוד השגיאה לשיחת ההצהרה האחרונה
-//mysqli_stmt_error () - מחזירה תיאור מחרוזת עבור שגיאת הצהרה אחרונה
 session_start();
 include 'config.php';
 $update=false;

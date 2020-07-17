@@ -1,5 +1,5 @@
 ﻿<?php
-include 'actionfrom.php';
+include_once('actionfrom.php');
 ?>
 
 <!DOCTYPE html> 

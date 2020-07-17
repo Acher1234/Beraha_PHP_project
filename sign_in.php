@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
   
 <div dir="ltr" color=black>
-    <?include_once("NavbarLink.php")?>
+    <? include_once("NavbarNotconnected.php") ?>
 <p> שלום אורח/ת </p>
 </div>
   
@@ -10,7 +10,9 @@
   
 <div class="login-box">
   <h1>הרשמה</h1>
+  <form action="" method="post">
   <div class="textbox">
+
  
     <i class="fas fa-user"></i>
     <input type="text" placeholder="שם משתמש"name="user_name" >
@@ -32,9 +34,9 @@
     <input type="password" placeholder="סיסמה" name="password" >
   </div>
 
-  <input type="button" class="btn" value="כניסה">
-  <br>
-  <a href="login1.php" class="mt-5 mb-3 text-muted">התחברות </a>
+  <input type="submit" class="btn" value="כניסה">
+  </form>
+  <a href="IndexLoginPages.php" class="mt-5 mb-3 text-muted">התחברות </a>
 </div>
 
 

@@ -34,5 +34,6 @@ function get_total_all_records()
  return $statement->row_array();
 }
 
+
 ?>
    
