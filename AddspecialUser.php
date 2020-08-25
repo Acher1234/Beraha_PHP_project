@@ -20,9 +20,10 @@ if(!isset($message))
 }
 if(!isset($message))
 {
-    $stm = $conn->prepare("INSERT INTO user (mail,user_name,Password,Telephone,types) VALUES (?, ?, ?,?,?);  ");
-    $r = $stm->execute([$_POST["mail"],$_POST["user_name"],password_hash($_POST["password"],PASSWORD_DEFAULT),$_POST["phone"],"custommer"]);
-    if($r){$message = 'ok';}
-    else{$message = 'error';}
+    $arr = [$_POST["mail"],$_POST["user_name"],password_hash($_POST["password"],PASSWORD_DEFAULT),$_POST["phone"],$_POST["Types"]];
+    $stm = $conn->prepare("INSERT INTO user (mail,user_name,Password,Telephone,types) VALUES (?, ?, ?,?,?);");
+    $r = $stm->execute($arr);
+    print_r($arr);
 }
 echo $message;
+header('Location:Redirection.php');

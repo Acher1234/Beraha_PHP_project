@@ -1,21 +1,4 @@
-<?php
-session_start();
-if(isset($_SESSION["Connected"]) && $_SESSION["Connected"])
-{
-  header("Location:/LogedPages.php");
-}
-if(isset($_POST["user_name"]))
-{
-  include("config.php");
-  $connexion = returnAConnexion();
-  $connexion->prepare("Select * into user WHERE user_name = ?");
-  $connexion->bind_param("s",$_POST["user_name"]);
-  $connexion->
-}
-$_SESSION["User"] = "";
-$_SESSION["Connected"] = false;
-
-?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
   <head>
@@ -43,19 +26,71 @@ $_SESSION["Connected"] = false;
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	   
-	   <link rel="stylesheet" href="style.css">
+	   <link rel="stylesheet" href="Notview/style.css">
 	   
  </head>
+  <?php
+  if (isset($_SESSION["Connected"]) && $_SESSION["Connected"])
+  {
+      header("Location:/ClientLogged.php");
+  }
+  ?>
+  <head>
+
+
+      <title> כניסה למערכת  </title>
+      <meta charset="utf-8">
+
+
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+      <!-- Popper JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="style.css">
+
+  </head>
 
   <body class="text-center">
-   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
-  
-    <img src="logo_01.png" alt="Logo" style="width:300px ;height:60PX ;padding:5px;">
 
-  
-  <!-- Navbar links -->
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+
+      <img src="logo_01.png" alt="Logo" style="width:300px ;height:60PX ;padding:5px;">
+
+
+      <!-- Navbar links -->
   </nav>
+  <?php
+  include_once("function.php");
+  if(isset($_POST["user_name"]))
+  {
+      $boolean = SetUserSession($_POST["user_name"], $_POST["password"]);
+      if ($boolean)
+      {
+            Header("Location:/Redirection.php");
+      }
+      if (!$boolean) {
+          $_SESSION["User"] = "";
+          $_SESSION["Connected"] = false;
+      }
+  }
+
+
+  ?>
+
+  <body class="text-center">
   
 <div dir="ltr" color=black>
 <p> שלום אורח/ת </p>
@@ -75,11 +110,10 @@ $_SESSION["Connected"] = false;
     <i class="fas fa-lock"></i>
     <input type="password" placeholder="סיסמה" name="password" require>
   </div>
-
-  <input type="submit" class="btn" value="כניסה">
+  <input type="submit" class="btn <?php  if(isset($boolean)){echo "btn-outline-danger";}?>" value="כניסה">
   <br>
   </form>
-  <a href="singin1.php" class="mt-5 mb-3 text-muted">צור חשבון </a>
+  <a href="sign_in.php" class="mt-5 mb-3 text-muted">צור חשבון </a>
 </div>
 
 

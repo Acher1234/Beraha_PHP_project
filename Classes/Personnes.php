@@ -1,11 +1,54 @@
 <?php
 
+include_once ('config.php');
 class Personnes
 {
     protected $username;
     protected $mail;
     protected $telephone;
     protected $Password;
+    protected $Types;
+    protected $ID;
+
+    public static function GetmailFromID($id)
+    {
+        $conn = returnAConnexion();
+        $stm = $conn->prepare('Select mail FROM user WHERE ID = ?');
+        $stm->execute([$id]);
+        $r = $stm->fetchAll()[0]['mail'];
+        return $r;
+    }
+    /**
+     * @return mixed
+     */
+    public function getID()
+    {
+        return $this->ID;
+    }
+
+    /**
+     * @param mixed $ID
+     */
+    public function setID($ID)
+    {
+        $this->ID = $ID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypes()
+    {
+        return $this->Types;
+    }
+
+    /**
+     * @param mixed $Types
+     */
+    public function setTypes($Types)
+    {
+        $this->Types = $Types;
+    }
 
     /**
      * Personnes constructor.
@@ -13,12 +56,14 @@ class Personnes
      * @param $mail
      * @param $telephone
      */
-    public function __construct($user,$mail,$telephone,$Password)
+    public function __construct($user,$mail,$telephone,$Password,$ID,$Types)
     {
         $this->username = $user;
         $this->mail = $mail;
         $this->telephone = $telephone;
         $this->Password = $Password;
+        $this->ID=$ID;
+        $this->Types=$Types;
     }
 
     /**
